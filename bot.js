@@ -42,8 +42,16 @@ fs.readdirSync(normalizedPath).forEach(file => {
   require(path.join(normalizedPath, file))(controller)
 })
 
-controller.hears('lunch','direct_message,direct_mention,mention,ambient',function(bot,message) {  
-    bot.reply(message,"WOOO~ Let's eat!!");
+controller.hears('fuck','direct_message,direct_mention,mention,ambient',function(bot,message) {  
+    bot.reply(message,"No swearing!");
+    bot.api.chat.delete({
+        ts: message.ts,
+        channel: message.channel,
+    }, function(err, res) {
+        if (err) {
+            bot.botkit.log('chat.delete error: ', error);
+        }
+    });
 });
 
 // This captures and evaluates any message sent to the bot as a DM
