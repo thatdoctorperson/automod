@@ -42,6 +42,10 @@ fs.readdirSync(normalizedPath).forEach(file => {
   require(path.join(normalizedPath, file))(controller)
 })
 
+controller.hears('lunch','direct_message,direct_mention,mention,ambient',function(bot,message) {  
+    bot.reply(message,"WOOO~ Let's eat!!");
+});
+
 // This captures and evaluates any message sent to the bot as a DM
 // or sent to the bot in the form "@bot message" and passes it to
 // Botkit Studio to evaluate for trigger words and patterns.
